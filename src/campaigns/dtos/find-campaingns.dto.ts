@@ -1,7 +1,7 @@
-import { MinLength, IsNumber, IsOptional } from 'class-validator';
+import { MinLength, IsInt, IsOptional } from 'class-validator';
 
 export class FindCampaingsDto {
-  @IsNumber()
+  @IsInt()
   @MinLength(1)
   @IsOptional()
   page: number;
