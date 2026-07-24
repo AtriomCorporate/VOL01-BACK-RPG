@@ -39,10 +39,6 @@ export class AuthService {
     const [users] = await this.usersService.find(storedUser.email!);
 
     if (users) {
-      if (!users.isActive) {
-        users.isActive = true;
-        return users;
-      }
       throw new BadRequestException('email in use');
     }
 
@@ -53,7 +49,7 @@ export class AuthService {
     return this.createToken(user);
   }
 
-  async signIn(email: string, passwordHash: string) {
+  async signIn(email: string, password: string) {
     const [user] = await this.usersService.find(email);
 
     if (!user) {
@@ -66,7 +62,7 @@ export class AuthService {
 
     const [salt, storedHash] = user.passwordHash.split('.');
 
-    const hash = (await scrypt(passwordHash, salt, 32)) as Buffer;
+    const hash = (await scrypt(password, salt, 32)) as Buffer;
 
     if (storedHash !== hash.toString('hex')) {
       throw new BadRequestException('bad password');

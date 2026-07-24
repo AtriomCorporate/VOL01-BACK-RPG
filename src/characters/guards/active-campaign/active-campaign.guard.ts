@@ -12,8 +12,6 @@ export class ActiveCampaignGuard implements CanActivate {
 
     const campaignId = request.body.campaignId;
 
-    return this.campaignsService
-      .findById(campaignId, request.user.id)
-      .then((x) => x.isActive);
+    return this.campaignsService.findById(campaignId).then((x) => x.isActive);
   }
 }

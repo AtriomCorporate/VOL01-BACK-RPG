@@ -37,7 +37,7 @@ export class CampaignsController {
 
   @Get('/:id')
   findCampaignById(@Param('id') id: number, @Req() req) {
-    return this.campaignService.findById(id, req.user.id);
+    return this.campaignService.findById(id);
   }
 
   @Patch('/:id')

@@ -19,10 +19,15 @@ export class UsersService {
     private objectsService: ObjectsService,
   ) {}
 
+  async createWithAuth(storedUser: Partial<User>, passwordHash: string) {
+    passwordHash = await this.authService.encryptPassword(passwordHash);
+    return this.create(storedUser, passwordHash);
+  }
+
   async create(storedUser: Partial<User>, passwordHash: string) {
     this.objectsService.instantiateVar(storedUser);
-    storedUser.passwordHash =
-      await this.authService.encryptPassword(passwordHash);
+    storedUser.passwordHash = passwordHash;
+
     if (!storedUser.email) {
       storedUser.email = '';
     }

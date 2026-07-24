@@ -79,7 +79,7 @@ export class CharactersService {
   }
 
   async checkIfCampaignIsActive(campaignId, userId) {
-    const camp = await this.campaignsService.findById(campaignId, userId);
+    const camp = await this.campaignsService.findById(campaignId);
     if (!camp.isActive) {
       throw new ForbiddenException('campaign was deleted');
     }

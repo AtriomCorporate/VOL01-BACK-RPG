@@ -41,15 +41,12 @@ export class CampaignsService {
     return campaigns;
   }
 
-  async findById(id: number, userId: number): Promise<Campaign> {
+  async findById(id: number): Promise<Campaign> {
     const campaign = await this.repo.findOne({
       where: { id: id },
     });
     if (!campaign) {
       throw new NotFoundException('campaign not found');
-    }
-    if (campaign.userId !== userId) {
-      throw new ForbiddenException('campaign does not belong to this user');
     }
     return campaign;
   }
@@ -59,7 +56,9 @@ export class CampaignsService {
     id: number,
     userId: number,
   ): Promise<Campaign> {
-    const campaign = await this.findById(id, userId);
+    this.checkCampaignOwner(id, userId);
+
+    const campaign = await this.findById(id);
 
     if (!campaign.isActive) {
       throw new ForbiddenException('Campaign was deleted');
@@ -73,16 +72,26 @@ export class CampaignsService {
   }
 
   async remove(id: number, userId: number) {
-    const campaign = await this.findById(id, userId);
+    this.checkCampaignOwner(id, userId);
+
+    const campaign = await this.findById(id);
 
     if (!campaign.isActive) {
       throw new ForbiddenException('Campaign was deleted');
     }
+
+    this.checkCampaignOwner(id, userId);
 
     campaign.isActive = false;
 
     this.objectsService.updateVar(campaign);
 
     this.repo.save(campaign);
+  }
+
+  checkCampaignOwner(ownerId: number, userId: number) {
+    if (ownerId !== userId) {
+      throw new ForbiddenException('user does not have the permission');
+    }
   }
 }

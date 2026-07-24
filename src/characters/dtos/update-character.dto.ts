@@ -1,6 +1,6 @@
 import {
   IsString,
-  IsNumber,
+  IsInt,
   IsOptional,
   Min,
   Max,
@@ -21,13 +21,13 @@ export class UpdateCharacterDto {
   @IsOptional()
   characterClass: string;
 
-  @IsNumber()
+  @IsInt()
   @Min(1)
   @Max(20)
   @IsOptional()
   level: number;
 
-  @IsNumber()
+  @IsInt()
   @Min(1)
   @IsOptional()
   maxHp: number;

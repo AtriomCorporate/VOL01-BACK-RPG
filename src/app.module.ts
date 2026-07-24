@@ -6,11 +6,8 @@ import { CharactersModule } from './characters/characters.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { CampaignsModule } from './campaigns/campaigns.module';
-import { ConfigModule, ConfigType } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
-import { Character } from './characters/characters.entity';
-import { User } from './users/users.entity';
-import { Campaign } from './campaigns/campaigns.entity';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 import { ObjectsService } from './objects/objects.service';
@@ -23,11 +20,7 @@ import dbConfig from './config/database.config';
       expandVariables: true,
       load: [dbConfig],
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forFeature(dbConfig)],
-      inject: [dbConfig.KEY],
-      useFactory: (config: ConfigType<typeof dbConfig>) => config,
-    }),
+    TypeOrmModule.forRootAsync(dbConfig.asProvider()),
     CharactersModule,
     UsersModule,
     CampaignsModule,

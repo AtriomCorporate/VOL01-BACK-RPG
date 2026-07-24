@@ -28,7 +28,7 @@ export class UsersController {
   @HttpCode(HttpStatus.OK)
   @Post()
   async createVisitor(@Body() body: CreateUserDto) {
-    const user = await this.usersService.create(body, '');
+    const user = await this.usersService.createWithAuth(body, body.password);
     return user;
   }
 

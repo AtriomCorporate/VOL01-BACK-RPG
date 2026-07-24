@@ -1,6 +1,6 @@
 import {
   IsString,
-  IsNumber,
+  IsInt,
   IsOptional,
   Min,
   Max,
@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 
 export class CreateCharacterDto {
-  @IsNumber()
+  @IsInt()
   campaignId: number;
 
   @IsString()
@@ -21,12 +21,12 @@ export class CreateCharacterDto {
   @IsString()
   characterClass: string;
 
-  @IsNumber()
+  @IsInt()
   @Min(1)
   @Max(20)
   level: number;
 
-  @IsNumber()
+  @IsInt()
   @Min(1)
   maxHp: number;
 
