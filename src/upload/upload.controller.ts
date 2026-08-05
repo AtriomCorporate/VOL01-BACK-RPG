@@ -24,7 +24,7 @@ export class UploadController {
     @Req() req,
     @Param('id') charId: number,
   ) {
-    return this.uploadService.salvarCharacter(file, charId, req.user.id);
+    return this.uploadService.salvarAvatar(file, charId, req.user.id);
   }
 
   @Post('campaign-banner/:id')
@@ -34,6 +34,6 @@ export class UploadController {
     @Req() req,
     @Param('id') campId: number,
   ) {
-    return this.uploadService.salvarCampaign(file, campId, req.user.id);
+    return this.uploadService.salvarBanner(file, campId, req.user.id);
   }
 }
