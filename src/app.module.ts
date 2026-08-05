@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { ObjectsService } from './objects/objects.service';
 import dbConfig from './config/database.config';
 
+import { UploadModule } from './upload/upload.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +28,7 @@ import dbConfig from './config/database.config';
     CampaignsModule,
     HealthModule,
     AuthModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService, ObjectsService],
