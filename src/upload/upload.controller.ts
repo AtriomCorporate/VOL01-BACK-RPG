@@ -24,7 +24,16 @@ export class UploadController {
     @Req() req,
     @Param('id') charId: number,
   ) {
-    console.log(file.filename);
     return this.uploadService.salvarCharacter(file, charId, req.user.id);
+  }
+
+  @Post('campaign-banner/:id')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadCampaignBanner(
+    @UploadedFile() file: Express.Multer.File,
+    @Req() req,
+    @Param('id') campId: number,
+  ) {
+    return this.uploadService.salvarCampaign(file, campId, req.user.id);
   }
 }
