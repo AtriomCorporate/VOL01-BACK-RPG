@@ -11,6 +11,6 @@ export default registerAs('db', (): TypeOrmModuleOptions => ({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   type: 'postgres',
-  entities: [__dirname + '/**/*.entity{.ts, .js}'],
+  entities: [User, Character, Campaign],
   synchronize: true,
 }));
