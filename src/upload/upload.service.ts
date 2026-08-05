@@ -11,12 +11,12 @@ export class UploadService {
     private campaignsService: CampaignsService,
   ) {}
 
-  salvarBanner(file: Express.Multer.File, charId: number, id: number) {
+  salvarAvatar(file: Express.Multer.File, charId: number, id: number) {
     const url: Partial<Character> = { avatarUrl: file.filename };
     return this.charactersService.update(charId, id, url);
   }
 
-  salvarAvatar(file: Express.Multer.File, campId: number, id: number) {
+  salvarBanner(file: Express.Multer.File, campId: number, id: number) {
     const url: Partial<Campaign> = { bannerUrl: file.filename };
     return this.campaignsService.update(url, campId, id);
   }

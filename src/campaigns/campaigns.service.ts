@@ -56,9 +56,9 @@ export class CampaignsService {
     id: number,
     userId: number,
   ): Promise<Campaign> {
-    this.checkCampaignOwner(id, userId);
-
     const campaign = await this.findById(id);
+
+    this.checkCampaignOwner(campaign.userId, userId);
 
     if (!campaign.isActive) {
       throw new ForbiddenException('Campaign was deleted');
