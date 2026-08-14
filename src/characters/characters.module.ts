@@ -10,5 +10,6 @@ import { CampaignsModule } from '../campaigns/campaigns.module';
   imports: [TypeOrmModule.forFeature([Character]), CampaignsModule],
   providers: [CharactersService, ObjectsService],
   controllers: [CharactersController],
+  exports: [CharactersService],
 })
 export class CharactersModule {}
