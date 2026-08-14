@@ -14,6 +14,7 @@ import { ObjectsService } from './objects/objects.service';
 import dbConfig from './config/database.config';
 
 import { UploadModule } from './upload/upload.module';
+import { ItemsModule } from './items/items.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UploadModule } from './upload/upload.module';
     HealthModule,
     AuthModule,
     UploadModule,
+    ItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService, ObjectsService],
