@@ -15,6 +15,7 @@ import dbConfig from './config/database.config';
 
 import { UploadModule } from './upload/upload.module';
 import { ItemsModule } from './items/items.module';
+import { CharacterItemModule } from './character-item/character-item.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ItemsModule } from './items/items.module';
     AuthModule,
     UploadModule,
     ItemsModule,
+    CharacterItemModule,
   ],
   controllers: [AppController],
   providers: [AppService, ObjectsService],
