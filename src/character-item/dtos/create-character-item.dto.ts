@@ -1,4 +1,4 @@
-import { IsInt, IsBoolean } from 'class-validator';
+import { IsInt, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateCharacterItemDto {
   @IsInt()
@@ -8,5 +8,6 @@ export class CreateCharacterItemDto {
   quantity: number;
 
   @IsBoolean()
+  @IsOptional()
   equipped: boolean;
 }

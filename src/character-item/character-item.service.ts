@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CharacterItem } from './character-item.entity';
 import { ItemsService } from '../items/items.service';
-import { CreateCharacterItemDto } from './dtos/create-character-item.dto';
 
 @Injectable()
 export class CharacterItemService {
@@ -24,7 +23,7 @@ export class CharacterItemService {
     return this.repo.save(characterItem);
   }
 
-  async find(idChar: number, idItem: number) {
+  private async find(idChar: number, idItem: number) {
     const item = await this.repo.findOne({
       where: { itemId: idItem, characterId: idChar },
     });
@@ -47,8 +46,6 @@ export class CharacterItemService {
   async delete(idChar: number, idItem: number) {
     const item = await this.find(idChar, idItem);
 
-    this.repo.remove(item);
-
-    return this.repo.save(item);
+    return this.repo.delete(item);
   }
 }
