@@ -11,8 +11,6 @@ import {
 import { RegisterUserDto } from './dtos/register-user.dto';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { AuthService } from './auth.service';
-import { Serialize } from '../interceptors/serialize.interceptor';
-import { UserDto } from '../users/dtos/user.dto';
 import { JwtAuthGuard } from '../guards/jwt-auth/jwt-auth.guard';
 import { RefreshAuthGuard } from '../guards/refresh-auth/refresh-auth.guard';
 

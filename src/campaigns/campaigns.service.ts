@@ -8,7 +8,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Campaign } from './campaigns.entity';
 import { ObjectsService } from '../objects/objects.service';
-import { UpdateCampaignDto } from './dtos/update-campaign.dto';
 
 @Injectable()
 export class CampaignsService {

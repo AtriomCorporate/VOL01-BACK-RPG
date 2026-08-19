@@ -4,7 +4,6 @@ import { CampaignsService } from './campaigns.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Campaign } from './campaigns.entity';
 import { ObjectsService } from '../objects/objects.service';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Campaign])],
