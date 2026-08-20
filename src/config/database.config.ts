@@ -5,6 +5,8 @@ import { Campaign } from '../campaigns/campaigns.entity';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Items } from '../items/items.entity';
 import { CharacterItem } from '../character-item/character-item.entity';
+import { Spells } from '../spells/spells.entity';
+import { CharacterSpell } from '../character-spell/character-spell.entity';
 
 export default registerAs('db', (): TypeOrmModuleOptions => ({
   host: process.env.DATABASE_HOST,
@@ -13,6 +15,14 @@ export default registerAs('db', (): TypeOrmModuleOptions => ({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   type: 'postgres',
-  entities: [User, Character, Campaign, Items, CharacterItem],
+  entities: [
+    User,
+    Character,
+    Campaign,
+    Items,
+    CharacterItem,
+    Spells,
+    CharacterSpell,
+  ],
   synchronize: true,
 }));

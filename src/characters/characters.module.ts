@@ -1,21 +1,22 @@
 import { Module } from '@nestjs/common';
 import { CharactersService } from './characters.service';
 import { CharactersController } from './characters.controller';
-import { ObjectsService } from '../objects/objects.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Character } from './characters.entity';
 import { CampaignsModule } from '../campaigns/campaigns.module';
 import { CharacterItemModule } from '../character-item/character-item.module';
-import { CharacterItem } from '../character-item/character-item.entity';
-import { CharacterItemService } from '../character-item/character-item.service';
+import { ObjectsModule } from '../objects/objects.module';
+import { CharacterSpellModule } from '../character-spell/character-spell.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Character]),
     CampaignsModule,
     CharacterItemModule,
+    CharacterSpellModule,
+    ObjectsModule,
   ],
-  providers: [CharactersService, ObjectsService],
+  providers: [CharactersService],
   controllers: [CharactersController],
   exports: [CharactersService],
 })

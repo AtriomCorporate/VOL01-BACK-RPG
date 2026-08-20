@@ -16,6 +16,9 @@ import dbConfig from './config/database.config';
 import { UploadModule } from './upload/upload.module';
 import { ItemsModule } from './items/items.module';
 import { CharacterItemModule } from './character-item/character-item.module';
+import { SpellsService } from './spells/spells.service';
+import { SpellsModule } from './spells/spells.module';
+import { CharacterSpellModule } from './character-spell/character-spell.module';
 
 @Module({
   imports: [
@@ -33,8 +36,10 @@ import { CharacterItemModule } from './character-item/character-item.module';
     UploadModule,
     ItemsModule,
     CharacterItemModule,
+    SpellsModule,
+    CharacterSpellModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ObjectsService],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -8,15 +8,16 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import jwtConfig from '../auth/config/jwt.config';
 import refreshJwtConfig from '../auth/config/refresh-jwt.config';
-import { ObjectsService } from '../objects/objects.service';
+import { ObjectsModule } from '../objects/objects.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     ConfigModule.forFeature(jwtConfig),
     ConfigModule.forFeature(refreshJwtConfig),
+    ObjectsModule,
   ],
   controllers: [UsersController],
-  providers: [UsersService, AuthService, JwtService, ObjectsService],
+  providers: [UsersService, AuthService, JwtService],
 })
 export class UsersModule {}

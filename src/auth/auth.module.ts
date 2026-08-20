@@ -12,7 +12,7 @@ import { RefreshJwtStrategy } from './strategies/refresh.strategy';
 import { PassportModule } from '@nestjs/passport';
 import jwtConfig from './config/jwt.config';
 import refreshJwtConfig from './config/refresh-jwt.config';
-import { ObjectsService } from '../objects/objects.service';
+import { ObjectsModule } from '../objects/objects.module';
 
 @Module({
   imports: [
@@ -21,6 +21,7 @@ import { ObjectsService } from '../objects/objects.service';
     JwtModule.registerAsync(jwtConfig.asProvider()),
     ConfigModule.forFeature(jwtConfig),
     ConfigModule.forFeature(refreshJwtConfig),
+    ObjectsModule,
   ],
   controllers: [AuthController],
   providers: [
@@ -29,7 +30,6 @@ import { ObjectsService } from '../objects/objects.service';
     JwtStrategy,
     LocalStrategy,
     RefreshJwtStrategy,
-    ObjectsService,
   ],
 })
 export class AuthModule {}
