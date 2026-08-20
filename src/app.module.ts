@@ -18,6 +18,7 @@ import { ItemsModule } from './items/items.module';
 import { CharacterItemModule } from './character-item/character-item.module';
 import { SpellsService } from './spells/spells.service';
 import { SpellsModule } from './spells/spells.module';
+import { CharacterSpellModule } from './character-spell/character-spell.module';
 
 @Module({
   imports: [
@@ -36,8 +37,9 @@ import { SpellsModule } from './spells/spells.module';
     ItemsModule,
     CharacterItemModule,
     SpellsModule,
+    CharacterSpellModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ObjectsService, SpellsService],
+  providers: [AppService],
 })
 export class AppModule {}

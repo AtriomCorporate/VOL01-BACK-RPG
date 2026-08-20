@@ -10,6 +10,8 @@ import {
 } from '@nestjs/common';
 import { SpellsService } from './spells.service';
 import { JwtAuthGuard } from '../guards/jwt-auth/jwt-auth.guard';
+import { UpdateSpellDto } from './dtos/update-spell.dto';
+import { CreateSpellDto } from './dtos/create-spell.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('spells')
