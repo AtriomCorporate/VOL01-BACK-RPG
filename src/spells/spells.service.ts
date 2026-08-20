@@ -56,6 +56,8 @@ export class SpellsService {
 
     spell.isActive = false;
 
+    this.objectsService.updateVar(spell);
+
     await this.repo.save(spell);
   }
 }
