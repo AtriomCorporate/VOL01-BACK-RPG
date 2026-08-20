@@ -21,6 +21,8 @@ import { CharacterItemService } from '../character-item/character-item.service';
 import { CreateCharacterItemDto } from '../character-item/dtos/create-character-item.dto';
 import { UpdateCharacterItemDto } from '../character-item/dtos/update-character-item.dto';
 import { UserCharacterGuard } from './guards/user-character/user-character.guard';
+import { CharacterSpellService } from '../character-spell/character-spell.service';
+import { CreateCharacterSpellDto } from '../character-spell/dtos/create-character-spell.dto';
 
 @Controller('characters')
 @UseGuards(JwtAuthGuard)
@@ -28,6 +30,7 @@ export class CharactersController {
   constructor(
     private charactersService: CharactersService,
     private characterItemService: CharacterItemService,
+    private characterSpellService: CharacterSpellService,
   ) {}
 
   @UseGuards(ActiveCampaignGuard)
@@ -89,5 +92,24 @@ export class CharactersController {
   ) {
     console.log('charId: %d\nitemId: %d', charId, itemId);
     return this.characterItemService.delete(charId, itemId);
+  }
+
+  @UseGuards(UserCharacterGuard)
+  @Post('/:id/spells')
+  async createSpell(
+    @Param('id', ParseIntPipe) charId: number,
+    @Body() body: CreateCharacterSpellDto,
+  ) {
+    return this.characterSpellService.create(charId, body);
+  }
+
+  @UseGuards(UserCharacterGuard)
+  @Delete('/:id/spells/:spellId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteSpell(
+    @Param('id', ParseIntPipe) charId: number,
+    @Param('spellId', ParseIntPipe) spellId: number,
+  ) {
+    return this.characterSpellService.delete(charId, spellId);
   }
 }
